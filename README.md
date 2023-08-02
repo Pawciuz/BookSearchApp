@@ -1,2 +1,2 @@
 # BookSearchApp
- missing node_modules
+App which uses two Book Apis for searching title, author, subject and cover of book.
