@@ -19,6 +19,7 @@ const expand = () => {
 		alert("Wprowadź nazwę książki")
 	} else {
 		box.classList.toggle("expand")
+		box.classList.remove("more-expand")
 		searchIcon.classList.toggle("fa-magnifying-glass")
 		searchIcon.classList.toggle("fa-xmark")
 		if (searchIcon.matches(".fa-xmark")) {
@@ -50,11 +51,18 @@ async function showInformation() {
 				title = data.docs[0].title
 				authorName = data.docs[0].author_name
 				isbn = data.docs[0].isbn[0]
-
 				try {
 					subjectFacet = data.docs[0].subject_facet[0]
 				} catch {
 					subjectFacet = "none"
+				}
+				if (
+					title.length > 28 ||
+					authorName.length > 28 ||
+					subjectFacet.length
+				) {
+					console.log(title.length)
+					box.classList.toggle("more-expand")
 				}
 			} catch {
 				errorArea.classList.add("show")
@@ -80,6 +88,7 @@ const prepareDOMEvents = () => {
 		if (e.key === "Enter") {
 			expand()
 		} else if (searchIcon.matches(".fa-xmark")) {
+			box.classList.remove("more-expand")
 			box.classList.toggle("expand")
 			searchIcon.classList.toggle("fa-magnifying-glass")
 			searchIcon.classList.toggle("fa-xmark")
