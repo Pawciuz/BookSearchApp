@@ -11,13 +11,15 @@ const subjectContent = document
 const loadingCircle = document.querySelector(".loading")! as HTMLBaseElement
 const errorArea = document.querySelector(".error")!
 const coverImg = document.querySelector(".cover")! as HTMLCanvasElement
+const noTitle = document.querySelector(".error-title")!
 const expand = () => {
 	if (
 		searchInput.value === "" &&
 		searchIcon.matches(".fa-magnifying-glass")
 	) {
-		alert("Wprowadź nazwę książki")
+		noTitle.classList.add("show")
 	} else {
+		noTitle.classList.add("remove")
 		box.classList.toggle("expand")
 		box.classList.remove("more-expand")
 		searchIcon.classList.toggle("fa-magnifying-glass")

@@ -14,18 +14,22 @@
 	<body>
 		<main class="center-elements-in">
 			<div class="window">
-				<input type="text" class="search-input" />
+				<input
+					type="text"
+					class="search-input"
+					placeholder="Input title" />
+				<p class="error-title hide">Please enter title</p>
 				<button class="search-btn center-elements-in">
 					<i class="fa-solid fa-magnifying-glass search-icon"></i>
 				</button>
-				<div class="APIcontent">
+				<div class="APIcontent hide">
 					<p class="title">Title : <span></span></p>
 					<p class="author">Author : <span></span></p>
 					<p class="subject">Subject : <span></span></p>
 					<img class="cover" src="" alt="cover" />
 				</div>
-				<p class="error">TITLE NOT FOUND</p>
-				<div class="loading"></div>
+				<p class="error hide">TITLE NOT FOUND</p>
+				<div class="loading hide"></div>
 			</div>
 		</main>
 	</body>
