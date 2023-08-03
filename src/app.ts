@@ -19,7 +19,7 @@ const expand = () => {
 	) {
 		noTitle.classList.add("show")
 	} else {
-		noTitle.classList.add("remove")
+		noTitle.classList.remove("show")
 		box.classList.toggle("expand")
 		box.classList.remove("more-expand")
 		searchIcon.classList.toggle("fa-magnifying-glass")
@@ -63,7 +63,6 @@ async function showInformation() {
 					authorName.length > 28 ||
 					subjectFacet.length
 				) {
-					console.log(title.length)
 					box.classList.toggle("more-expand")
 				}
 			} catch {

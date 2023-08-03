@@ -80,11 +80,11 @@ main {
 	position: absolute;
 	top: 100px;
 	left: 50px;
-	color: rgb(59, 11, 11);
+	color: rgb(54, 2, 52);
 	transition: all 1s ease;
 	visibility: hidden;
 	opacity: 0;
-	text-shadow: 2px 2px rgb(56, 53, 53);
+	text-shadow: 1px 1px rgb(206, 126, 126);
 }
 .search-input:focus {
 	background-color: rgb(228, 184, 220);
@@ -173,4 +173,30 @@ main {
 .show {
 	visibility: visible;
 	opacity: 1;
+}
+@media screen and (max-width: 540px) {
+	.window {
+		width: 330px;
+		padding: 40px 0;
+		gap: 0px;
+	}
+	.search-input {
+		width: 230px;
+		justify-self: center;
+		align-self: center;
+	}
+	.window::before {
+		width: 330px;
+	}
+	.APIcontent {
+		width: 330px;
+		margin-top: 10px;
+	}
+	.APIcontent p {
+		padding-left: 30px;
+		padding-right: 10px;
+	}
+	.more-expand {
+		height: 680px;
+	}
 }
