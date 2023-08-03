@@ -29,6 +29,8 @@ main {
 	transition: height 1s;
 	border-radius: 25px;
 	position: relative;
+	box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
+		0 0 0 2px rgb(255, 255, 255), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
 }
 .window::before {
 	content: "Enter book title";
@@ -79,6 +81,9 @@ main {
 }
 .expand {
 	height: 550px;
+}
+.more-expand {
+	height: 580px;
 }
 .APIcontent {
 	width: 420px;
@@ -151,6 +156,10 @@ main {
 	margin: 30px auto auto auto;
 	display: none;
 	height: 250px;
+	border-radius: 25px;
+	-webkit-box-shadow: 0px 0px 36px 1px rgba(89, 3, 89, 1);
+	-moz-box-shadow: 0px 0px 36px 1px rgba(89, 3, 89, 1);
+	box-shadow: 0px 0px 36px 1px rgba(89, 3, 89, 1);
 }
 .show {
 	visibility: visible;
