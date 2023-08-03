@@ -19,6 +19,7 @@ const expand = () => {
     }
     else {
         box.classList.toggle("expand");
+        box.classList.remove("more-expand");
         searchIcon.classList.toggle("fa-magnifying-glass");
         searchIcon.classList.toggle("fa-xmark");
         if (searchIcon.matches(".fa-xmark")) {
@@ -56,6 +57,12 @@ async function showInformation() {
             catch {
                 subjectFacet = "none";
             }
+            if (title.length > 28 ||
+                authorName.length > 28 ||
+                subjectFacet.length) {
+                console.log(title.length);
+                box.classList.toggle("more-expand");
+            }
         }
         catch {
             errorArea.classList.add("show");
@@ -82,6 +89,7 @@ const prepareDOMEvents = () => {
             expand();
         }
         else if (searchIcon.matches(".fa-xmark")) {
+            box.classList.remove("more-expand");
             box.classList.toggle("expand");
             searchIcon.classList.toggle("fa-magnifying-glass");
             searchIcon.classList.toggle("fa-xmark");
