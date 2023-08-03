@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 const button = document.querySelector("button");
 const box = document.querySelector(".window");
 const searchIcon = document.querySelector(".search-icon");
@@ -39,47 +48,49 @@ const expand = () => {
         }
     }
 };
-async function showInformation() {
-    let url = "https://openlibrary.org/search.json?q=";
-    url += searchInput.value.replace(/\s+/g, "+").toLowerCase();
-    searchInput.value = "";
-    fetch(url)
-        .then((res) => res.json())
-        .then((data) => {
-        let title, authorName, subjectFacet, isbn, coverUrl;
-        try {
-            title = data.docs[0].title;
-            authorName = data.docs[0].author_name;
-            isbn = data.docs[0].isbn[0];
+function showInformation() {
+    return __awaiter(this, void 0, void 0, function* () {
+        let url = "https://openlibrary.org/search.json?q=";
+        url += searchInput.value.replace(/\s+/g, "+").toLowerCase();
+        searchInput.value = "";
+        fetch(url)
+            .then((res) => res.json())
+            .then((data) => {
+            let title, authorName, subjectFacet, isbn, coverUrl;
             try {
-                subjectFacet = data.docs[0].subject_facet[0];
+                title = data.docs[0].title;
+                authorName = data.docs[0].author_name;
+                isbn = data.docs[0].isbn[0];
+                try {
+                    subjectFacet = data.docs[0].subject_facet[0];
+                }
+                catch (_a) {
+                    subjectFacet = "none";
+                }
+                if (title.length > 28 ||
+                    authorName.length > 28 ||
+                    subjectFacet.length) {
+                    console.log(title.length);
+                    box.classList.toggle("more-expand");
+                }
             }
-            catch {
-                subjectFacet = "none";
+            catch (_b) {
+                errorArea.classList.add("show");
+                apiContent.classList.add("show");
             }
-            if (title.length > 28 ||
-                authorName.length > 28 ||
-                subjectFacet.length) {
-                console.log(title.length);
-                box.classList.toggle("more-expand");
-            }
-        }
-        catch {
-            errorArea.classList.add("show");
-            apiContent.classList.add("show");
-        }
-        coverUrl = `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`;
-        fetch(coverUrl)
-            .then((res) => {
-            coverImg.setAttribute("src", res.url);
-        })
-            .then(() => (coverImg.style.display = "block"));
-        loadingCircle.classList.toggle("show");
-        loadingCircle.style.display = "none"; // this is because opacity dont cancel animation
-        apiContent.classList.toggle("show");
-        titleContent.textContent = title;
-        authorContent.textContent = authorName;
-        subjectContent.textContent = subjectFacet;
+            coverUrl = `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`;
+            fetch(coverUrl)
+                .then((res) => {
+                coverImg.setAttribute("src", res.url);
+            })
+                .then(() => (coverImg.style.display = "block"));
+            loadingCircle.classList.toggle("show");
+            loadingCircle.style.display = "none"; // this is because opacity dont cancel animation
+            apiContent.classList.toggle("show");
+            titleContent.textContent = title;
+            authorContent.textContent = authorName;
+            subjectContent.textContent = subjectFacet;
+        });
     });
 }
 const prepareDOMEvents = () => {
