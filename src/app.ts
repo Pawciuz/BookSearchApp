@@ -61,7 +61,7 @@ async function showInformation() {
 				if (
 					title.length > 28 ||
 					authorName.length > 28 ||
-					subjectFacet.length
+					subjectFacet.length > 28
 				) {
 					box.classList.toggle("more-expand")
 				}

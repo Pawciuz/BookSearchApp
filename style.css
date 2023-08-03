@@ -35,7 +35,7 @@ main {
 .window::before {
 	content: "Enter book title";
 	position: absolute;
-	width: 500px;
+	width: 100%;
 	top: -60px;
 	display: flex;
 	justify-content: center;
@@ -96,7 +96,7 @@ main {
 	height: 580px;
 }
 .APIcontent {
-	width: 420px;
+	width: 100%;
 	transition: all 1s ease;
 	visibility: hidden;
 	opacity: 0;
@@ -181,15 +181,15 @@ main {
 		gap: 0px;
 	}
 	.search-input {
-		width: 230px;
+		width: 200px;
 		justify-self: center;
 		align-self: center;
 	}
 	.window::before {
-		width: 330px;
+		width: 100%;
 	}
 	.APIcontent {
-		width: 330px;
+		width: 100%;
 		margin-top: 10px;
 	}
 	.APIcontent p {
@@ -197,6 +197,6 @@ main {
 		padding-right: 10px;
 	}
 	.more-expand {
-		height: 680px;
+		height: 650px;
 	}
 }
