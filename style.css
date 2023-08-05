@@ -138,6 +138,7 @@ main {
 	border-top: 16px solid #550b55;
 	border-radius: 50%;
 	animation: spin 2s linear infinite;
+	display: none;
 }
 @keyframes spin {
 	0% {

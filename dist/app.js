@@ -38,7 +38,7 @@ const expand = () => {
             if (searchIcon.matches(".fa-xmark")) {
                 // clicking search
                 loadingCircle.classList.toggle("show");
-                loadingCircle.style.display = "grid";
+                loadingCircle.style.display = "block";
                 showInformation();
             }
             else {
