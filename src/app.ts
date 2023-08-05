@@ -13,30 +13,32 @@ const errorArea = document.querySelector(".error")!
 const coverImg = document.querySelector(".cover")! as HTMLCanvasElement
 const noTitle = document.querySelector(".error-title")!
 const expand = () => {
-	if (
-		searchInput.value === "" &&
-		searchIcon.matches(".fa-magnifying-glass")
-	) {
-		noTitle.classList.add("show")
-	} else {
-		noTitle.classList.remove("show")
-		box.classList.toggle("expand")
-		box.classList.remove("more-expand")
-		searchIcon.classList.toggle("fa-magnifying-glass")
-		searchIcon.classList.toggle("fa-xmark")
-		if (searchIcon.matches(".fa-xmark")) {
-			// clicking search
-			loadingCircle.classList.toggle("show")
-			loadingCircle.style.display = "grid"
-			showInformation()
+	if (!loadingCircle.matches(".show")) {
+		if (
+			searchInput.value === "" &&
+			searchIcon.matches(".fa-magnifying-glass")
+		) {
+			noTitle.classList.add("show")
 		} else {
-			// closing with x button
-			errorArea.classList.remove("show")
-			apiContent.classList.remove("show")
-			coverImg.style.display = "none"
-			titleContent.textContent = ""
-			authorContent.textContent = ""
-			subjectContent.textContent = ""
+			noTitle.classList.remove("show")
+			box.classList.toggle("expand")
+			box.classList.remove("more-expand")
+			searchIcon.classList.toggle("fa-magnifying-glass")
+			searchIcon.classList.toggle("fa-xmark")
+			if (searchIcon.matches(".fa-xmark")) {
+				// clicking search
+				loadingCircle.classList.toggle("show")
+				loadingCircle.style.display = "grid"
+				showInformation()
+			} else {
+				// closing with x button
+				errorArea.classList.remove("show")
+				apiContent.classList.remove("show")
+				coverImg.style.display = "none"
+				titleContent.textContent = ""
+				authorContent.textContent = ""
+				subjectContent.textContent = ""
+			}
 		}
 	}
 }
@@ -48,7 +50,11 @@ async function showInformation() {
 	fetch(url)
 		.then((res) => res.json())
 		.then((data) => {
-			let title, authorName, subjectFacet, isbn, coverUrl
+			let title: string = "",
+				authorName: string = "",
+				subjectFacet: string = "",
+				isbn: string = "",
+				coverUrl: string = ""
 			try {
 				title = data.docs[0].title
 				authorName = data.docs[0].author_name
@@ -83,9 +89,8 @@ async function showInformation() {
 			subjectContent.textContent = subjectFacet
 		})
 }
-const prepareDOMEvents = () => {
-	button.addEventListener("click", expand)
-	searchInput.addEventListener("keyup", (e) => {
+const keyboardSearch = (e: any) => {
+	if (!loadingCircle.matches(".show")) {
 		if (e.key === "Enter") {
 			expand()
 		} else if (searchIcon.matches(".fa-xmark")) {
@@ -100,7 +105,11 @@ const prepareDOMEvents = () => {
 			authorContent.textContent = ""
 			subjectContent.textContent = ""
 		}
-	})
+	}
+}
+const prepareDOMEvents = () => {
+	button.addEventListener("click", expand)
+	searchInput.addEventListener("keyup", keyboardSearch)
 }
 const main = () => {
 	prepareDOMEvents()
