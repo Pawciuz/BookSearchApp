@@ -5,19 +5,14 @@ const searchInput = document.querySelector(".search-input") as HTMLInputElement
 const apiContent = document.querySelector(".APIcontent")!
 const titleContent = document.querySelector(".title")!.querySelector("span")!
 const authorContent = document.querySelector(".author")!.querySelector("span")!
-const subjectContent = document
-	.querySelector(".subject")!
-	.querySelector("span")!
+const subjectContent = document.querySelector(".subject")!.querySelector("span")!
 const loadingCircle = document.querySelector(".loading")! as HTMLBaseElement
 const errorArea = document.querySelector(".error")!
 const coverImg = document.querySelector(".cover")! as HTMLCanvasElement
 const noTitle = document.querySelector(".error-title")!
 const expand = () => {
 	if (!loadingCircle.matches(".show")) {
-		if (
-			searchInput.value === "" &&
-			searchIcon.matches(".fa-magnifying-glass")
-		) {
+		if (searchInput.value === "" && searchIcon.matches(".fa-magnifying-glass")) {
 			noTitle.classList.add("show")
 			setTimeout(() => noTitle.classList.remove("show"), 2000)
 		} else {
@@ -65,11 +60,7 @@ async function showInformation() {
 				} catch {
 					subjectFacet = "none"
 				}
-				if (
-					title.length > 28 ||
-					authorName.length > 28 ||
-					subjectFacet.length > 28
-				) {
+				if (title.length > 28 || authorName.length > 28 || subjectFacet.length > 28) {
 					box.classList.toggle("more-expand")
 				}
 			} catch {
