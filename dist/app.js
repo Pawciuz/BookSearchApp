@@ -27,6 +27,7 @@ const expand = () => {
         if (searchInput.value === "" &&
             searchIcon.matches(".fa-magnifying-glass")) {
             noTitle.classList.add("show");
+            setTimeout(() => noTitle.classList.remove("show"), 2000);
         }
         else {
             noTitle.classList.remove("show");
